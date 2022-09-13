@@ -9,15 +9,11 @@ class Config:
      SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://root:1234@localhost/moviesdb'
 
 class Development_Config(Config):
-    uri=os.environ.get("DATABASE URL")
-    SQLAlchemy_DATABASE_URI = uri
     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://root:1234@localhost/moviesdb'
 
 
 class Production_Config(Config):
-    uri = os.environ.get("DATABASE URL")
-    SQLAlchemy_DATABASE_URI = uri
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://root:1234@localhost/moviesdb'
+    uri = os.environ.get("DATABASE_URL")
     if uri and uri.startswith('postgres://'):
         uri=uri.replace("postgres://","postgresql://",1)
     SQLALCHEMY_DATABASE_URI = uri
