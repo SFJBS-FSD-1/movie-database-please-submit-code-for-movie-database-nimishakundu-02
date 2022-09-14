@@ -1,4 +1,4 @@
-from flask import Flask,request,jsonify
+from flask import Flask,request,jsonify,render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_restful import Api,Resource
 from http import HTTPStatus
@@ -132,6 +132,12 @@ class one_movie(Resource):
         #         return jsonify(dictmovie)
         # else:
         #     return jsonify({'message':'ID not found','status':404})
+
+@app.route("/",methods=['GET','POST'])
+def home():
+    if request.method == "GET":
+        return render_template("home.html")
+
 
 
 api.add_resource(AllMovies,"/movies")
